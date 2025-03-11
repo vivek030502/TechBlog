@@ -54,7 +54,7 @@ Follow these steps to set up the TechBlog project on your local machine:
 2. **Set up the database:**
    - Install MySQL and create a database named `techblog`.
    - Import the database schema from the `database/schema.sql` file.
-   ---sql
+   ```sql
     create table user(
 	    Id int primary key not null auto_increment,
       Name varchar(500) not null,
