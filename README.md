@@ -29,25 +29,14 @@ TechBlog is a full-fledged blogging platform designed to help users publish and 
 - **Post Management:** Create, edit, delete, and view blog posts.
 - **Category Management:** Organize posts into categories for better navigation.
 - **Comments:** Users can comment on posts to facilitate discussion.
-- **Admin Panel:** Administrative interface for managing users, posts, and categories.
 - **Responsive Design:** Mobile-friendly layout for seamless browsing across devices.
-- **Search Functionality:** Easily search for posts using keywords.
 
 ---
 
 ## Technologies Used
 
-- **Frontend:**
-  - HTML
-  - CSS
-  - JavaScript
-  - Bootstrap
-
-- **Backend:**
   - Java
   - JDBC
-
-- **Database:**
   - MySQL
 
 ---
@@ -65,7 +54,41 @@ Follow these steps to set up the TechBlog project on your local machine:
 2. **Set up the database:**
    - Install MySQL and create a database named `techblog`.
    - Import the database schema from the `database/schema.sql` file.
+   ---sql
+    create table user(
+	    Id int primary key not null auto_increment,
+      Name varchar(500) not null,
+      Email varchar(500) not null,
+      Password varchar(500) not null,
+      Gender varchar(20) not null,
+      About varchar(1000) default "hey, I am using Tech Blog.",
+      rdate timestamp
+    );
 
+    create table categories(
+	    cid int primary key not null auto_increment,
+      name varchar(200) not null,
+      description varchar(500) not null
+    );
+
+    CREATE TABLE posts (
+      pid INT PRIMARY KEY AUTO_INCREMENT,
+      pTitle VARCHAR(150) NOT NULL,
+      pContent LONGTEXT,
+      pCode LONGTEXT,
+      pPic VARCHAR(100),
+      pDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      catId INT,
+      FOREIGN KEY (catId) REFERENCES categories(cid)
+    );
+
+    select * from user;
+    select * from categories;
+    select * from posts;
+    select * from liked;
+
+  ---
+  
 3. **Configure the application:**
    - Open the `src/main/resources/config.properties` file.
    - Update the database connection details:
